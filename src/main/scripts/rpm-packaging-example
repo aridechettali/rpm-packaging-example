@@ -76,15 +76,14 @@ stop() {
   else
     # Kills the application process
     echo -en "Shutting down ${project.artifactId}"
-    kill  $pid >/dev/null 2>&1
+    su ${unix.user.name} -c "kill  $pid >/dev/null 2>&1"
 
     statuscode=1
     for i in $(seq 45)
     do
         sleep 1
         echo -n "."
-        kill -0 $pid >/dev/null 2>&1
-        if [ $? -eq 1 ] ;  then
+        if [ ! -d "/proc/$pid" ] ; then
           statuscode=0
           break
         fi
