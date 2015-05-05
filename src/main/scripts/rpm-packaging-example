@@ -43,7 +43,7 @@ start() {
   else
     # If the application isn't running, starts it
     echo -en "Staring ${project.artifactId}.."
-    su ${unix.user.name} -c "java -jar ${rpm.install.directory}/${project.artifactId}-${project.version}.jar >> ${rpm.install.directory}/log/application.log 2>&1 &"
+    su - ${unix.user.name} -c "java -jar ${rpm.install.directory}/${project.artifactId}-${project.version}.jar >> ${rpm.install.directory}/log/application.log 2>&1 &"
     statuscode=0
     for i in $(seq 10)
     do
@@ -76,7 +76,7 @@ stop() {
   else
     # Kills the application process
     echo -en "Shutting down ${project.artifactId}"
-    su ${unix.user.name} -c "kill  $pid >/dev/null 2>&1"
+    su - ${unix.user.name} -c "kill  $pid >/dev/null 2>&1"
 
     statuscode=1
     for i in $(seq 45)
