@@ -129,8 +129,8 @@
                 </executions>
                 <configuration>
                     <license>non-commercial software</license>
-                    <distribution>${groupId}</distribution>
-                    <group>${groupId}</group>
+                    <distribution>${project.groupId}</distribution>
+                    <group>${project.groupId}</group>
                     <mappings>
                         <mapping>
                             <directory>${rpm.install.directory}</directory>
